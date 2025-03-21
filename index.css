@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    background-color:  rgb(30,30,30);
+    height : 100vh ;
+    width : 100vw ;
+    display :flex;align-items :center; justify-content:  center;;
+    overflow: hidden;
+}
+
+
+.container {
+    display :flex;align-items: center;justify-content: center;flex-wrap: wrap;
+    height : clamp(291px , 72vh , 81vh); aspect-ratio: 1;
+    background-color : none
+}
+
+
+.outer-container {
+    display :flex;align-items: center;justify-content: center;flex-wrap: wrap;
+    height : calc(90px + (clamp(291px , 72vh , 81vh))); aspect-ratio: 1;
+    background-color : rgb(139,69,19);
+    border-radius: 10px;
+}
+
+.blocks {
+    height : clamp(36.375px , 9vh , 10.125vh) ; aspect-ratio: 1;
+    background-color:  rgb(240,217,181);
+border : 1px solid rgb(50,50,50) ;
+display: flex;; align-items: center;justify-content: center;
+cursor : pointer;
+transition: all 0.1 ease-in-out;
+}
+
+
+.dark_block {
+    background-color: rgb(125,95,60) !important;
+}
+
+img{
+    height : 70%;
+    object-fit: cover;
+}
+
+.blocks.Active.notClicked:hover {
+    background-color: whitesmoke;
+}
+
+.blocks.dark_block.Active.notClicked:hover {
+    background-color: whitesmoke !important
+}
+
+.movable
+{
+    background-color: rgb(144,238,144) !important;
+    opacity: 1;
+}
+
+.attackable {
+    opacity : 1  /*still i think i need to add colors to this */
+}
+
+.enemyMove {
+    background-color: red !important;
+}
