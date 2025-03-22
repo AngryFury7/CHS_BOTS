@@ -1,3 +1,4 @@
+// this file contains information about the different types of movement of the peices and the working of the Peices 
 
 
 export let Search = (a,b) => {
@@ -30,10 +31,13 @@ export let Search = (a,b) => {
 
  
 //----------------------------------------------------------------------------------------------------------------------------------
-export const Cm = (Arrayone = ["white" , "black"],ArrayWhite = [3, 6],ArrayBlack = [51,54]) => {
+
+export const Cm = () => {
     document.querySelectorAll(".Cm").forEach((value,index) => {
         let Cm_X = Number(value.getAttribute("X"));
         let Cm_Y = Number(value.getAttribute("Y"));
+        
+        
 
         let ArrayofmovementsCm_TR= []; //done 
         let TRX = Cm_X ; 
@@ -716,6 +720,7 @@ export const Pw = () => {
 
 
         value.addEventListener('click',()=> {
+
             if( !value.classList.contains("ActiveA") || !value.classList.contains("Pw"))
                 {
                     return 
@@ -755,9 +760,8 @@ export const Pw = () => {
                         if(value.x !== Pw_X)
                         {
                             if(Search(value.x,value.y).classList.contains("whiteP")){
-                                Search(value.x,value.y).classList.add("enemyMove");
+                                Search(value.x,value.y).classList.add("enemyMove")
                             }
-                            
                         }else{
                             if(value.id === "notpass")
                             {
@@ -852,10 +856,6 @@ let clickedNum = [];
 let clickedNumX = [];
 let clickedNumY = [];
 
-let PeiceID;
-let EnemyID;
-let IDneeder = [];
-
 document.querySelectorAll('.blocks').forEach((value,index) => {
     value.addEventListener('click',()=> {
         let typeofblock ;
@@ -874,7 +874,6 @@ document.querySelectorAll('.blocks').forEach((value,index) => {
         clickedNumX.push(Number(value.getAttribute("X")));
         clickedNumY.push(Number(value.getAttribute("Y")));
         if(value.classList.contains("movable")){ 
-            let curentPosition = Number(value.getAttribute("positionN"))
             if(colorofPeice === "white"){turns.push("black")}
             if(colorofPeice === "black"){turns.push("white")}
             AllowTurn();
@@ -883,20 +882,7 @@ document.querySelectorAll('.blocks').forEach((value,index) => {
             Search(currentX,currentY).classList.remove(classcolorofPeice);
             Search(currentX,currentY).classList.remove("Active");
             Search(currentX,currentY).classList.remove("ActiveA");
-            Search(currentX,currentY).setAttribute("PeiceID","")
             Search(currentX,currentY).firstElementChild.setAttribute('src',"");
-            value.setAttribute("PeiceID",`${PeiceID}`)
-            let indexoP ;
-            for(let i = 0 ; i<= 31 ; i++)
-            {
-                if(PositionObserver[PositionObserver.length - 1][i].id  === PeiceID){ indexoP = i};
-                
-            }
-            let NewArray = PositionObserver[PositionObserver.length - 1].map((value,index) => {
-                if(index !== indexoP){return value}
-                if(index === indexoP){return {id : PeiceID , positionN : curentPosition}}
-            })
-            PositionObserver.push(NewArray);
             value.classList.add(typeofPeice);
             value.classList.add(classcolorofPeice);
             value.classList.add("Active");
@@ -904,63 +890,32 @@ document.querySelectorAll('.blocks').forEach((value,index) => {
             MakeDefault();
             ActiveblockMover();
             Testing();
+
+
             }//closingbracket of if
         }
 
 
         if(value.classList.contains("enemyMove")){ 
             if(currentX){ //starting bracket of if 
-                let opponentID = value.getAttribute("PeiceID");
-                let currentEnemyP = Number(value.getAttribute("positionN"))
-                let opponentindex;
-                for(let i = 0 ; i <=31 ; i++)
-                {
-                    if(PositionObserver[PositionObserver.length - 1][i].id === opponentID){
-                        opponentindex  = i;
-                     }
-                }
-
-                let PeiceIndex ;
-                for(let i = 0 ; i <=31 ; i++)
-                {
-                    if(PositionObserver[PositionObserver.length - 1][i].id === PeiceID){
-                        PeiceIndex  = i;
-                     }  
-                }
-
-                let NewArray = PositionObserver[PositionObserver.length - 1].map((value,index) => {
-                    if(index !== opponentindex  && index !== PeiceIndex){return value}
-                    if(index === opponentindex){return {id : opponentID ,  state : "deleted" , defeatby : PeiceID }};
-                    if(index === PeiceIndex){return { id : PeiceID , positionN : currentEnemyP}}
-                    //also mention the id change of the peice which cutted the black or white part 
-                })
-
-                PositionObserver.push(NewArray);
-
                 if(value.classList.contains("Kn")){
                     if(turns[turns.length - 1] === "white"){console.log("white is the winner") ; winner = "white"};
                     if(turns[turns.length - 1] === "black"){console.log("black is the winner") ; winner = "black"}
                 }
-                EnemyID = value.getAttribute("PeiceID")
                 
                 if(colorofPeice === "white"){turns.push("black")}
                 if(colorofPeice === "black"){turns.push("white")}
 
                  Search(currentX,currentY).classList.remove("Active");
-                 Search(currentX,currentY).setAttribute("PeiceID" , "");
                  Search(currentX,currentY).classList.remove("ActiveA");
                  Search(currentX,currentY).classList.remove(typeofPeice);
                  Search(currentX,currentY).classList.remove(classcolorofPeice);
 
 
+                 value.classList.add(typeofPeice);
                  value.classList.add(classcolorofPeice);
-                 value.setAttribute("PeiceID",`${PeiceID}`)
 
-                if(typeofPeice !== typeofblock)
-                {
-                    value.classList.remove(typeofblock);
-                    value.classList.add(typeofPeice);
-                }
+                 value.classList.remove(typeofblock);
                  value.classList.remove(classcolorofEnemy);
                  value.classList.remove("Clicked");
                  value.classList.add("notClicked")
@@ -970,13 +925,12 @@ document.querySelectorAll('.blocks').forEach((value,index) => {
 
 
                 value.firstElementChild.setAttribute('src',`./svgs/${colorofPeice}_${peicestring}.svg`);
-                AllowTurn();
+
             MakeDefault();
             ActiveblockMover();
             cleanUp();
+            AllowTurn();
 
-            opponentID = undefined;
-            PeiceIndex = undefined;
             
 
             }//closingbracket of if
@@ -1008,8 +962,6 @@ export const MakeDefault = () =>
          updatedSvgtype = undefined;  
          indexomania  = undefined;
          peicestring = undefined;
-         PeiceID = undefined;
-         EnemyID = undefined;
     }
 
 
@@ -1019,19 +971,6 @@ export const ActiveblockMover = () => {
                 Pw();Hr();Qn();El();Kn();Cm();
                 let mainindex = index;
                 if(value.classList.contains("Active")){
-
-
-
-                    if(turns[turns.length - 1] === "white"){
-                        if(value.classList.contains("whiteP")){
-                        PeiceID = value.getAttribute("PeiceID");}
-                    }
-
-                    if(turns[turns.length - 1] === "black"){
-                       if( value.classList.contains("blackP")){
-                        PeiceID = value.getAttribute("PeiceID");}
-                    }
-
                 currentX = Number(value.getAttribute("X"));
                 currentY = Number(value.getAttribute("Y"));
                 if(value.classList.contains("whiteP")){colorofEnemy = "black" ; colorofPeice = "white" , classcolorofEnemy = "blackP" ; classcolorofPeice = "whiteP"};
@@ -1063,9 +1002,9 @@ export const ActiveblockMover = () => {
 };
 
 
+//now i will have to store the positions 
 
-
-export let PositionObserver = 
+export const PositionObserver = 
 [
     [
         {id : "whiteElephant1",positionN : 1},
@@ -1101,160 +1040,7 @@ export let PositionObserver =
         {id : "blackPawn7",positionN : 63},
         {id : "blackPawn8",positionN : 64}
     ]
-];
-
-document.querySelectorAll(".blocks").forEach((value,index) => {
-    value.addEventListener('click',()=> {
-        if(winner === "white"){
-            for(let i = 0;
-                i <=0 ;
-                i++
-            )
-            {
-                document.querySelector(".ResultImg").setAttribute("src","./svgs/white_king.svg");
-                document.querySelector(".ResultText").innerHTML = "White is the Winner !";
-                gsap.set(document.querySelector(".ResultText"),{
-                    color : "rgb(255,255,255)"
-                })
-            }
-            gsap.to(document.querySelector(".Result"),{
-                scale : 1 , 
-                duration : 0.3 ,
-                ease : Power4.easeInOut
-            })
-        }
-        if(winner === "black"){
-            for(let i = 0;
-                i <=0 ;
-                i++
-            )
-            {
-                document.querySelector(".ResultImg").setAttribute("src","./svgs/black_king.svg");
-                document.querySelector(".ResultText").innerHTML = "Black is the Winner !";
-                gsap.set(document.querySelector(".ResultText"),{
-                    color : "rgb(0,0,0)"
-                })
-            }
-
-
-            gsap.to(document.querySelector(".Result"),{
-                scale : 1 , 
-                duration : 0.3 ,
-                ease : Power4.easeInOut
-            })
-        }
-    })
-});
-
-
-document.querySelector(".Restart").addEventListener('click',()=> {
-
-    // first default the chess game Peices
-    document.querySelectorAll(".blocks").forEach((value,index) => {
-        if(value.classList.contains("Active")){value.classList.remove("Active")}
-        if(value.classList.contains("ActiveA")){value.classList.remove("ActiveA")}
-        if(value.classList.contains("whiteP")){value.classList.remove("whiteP")}
-        if(value.classList.contains("blackP")){value.classList.remove("blackP")}
-        if(value.classList.contains("El")){value.classList.remove("El")}
-        if(value.classList.contains("Hr")){value.classList.remove("Hr")}
-        if(value.classList.contains("Kn")){value.classList.remove("Kn")}
-        if(value.classList.contains("Cm")){value.classList.remove("Cm")}
-        if(value.classList.contains("Qn")){value.classList.remove("Qn")}
-        if(value.classList.contains("Pw")){value.classList.remove("Pw")};
-        if(value.classList.contains("Clicked")){value.classList.remove("Clicked")};
-        if(value.classList.contains("notClicked")){value.classList.remove("notClicked")}
-        value.setAttribute("PeiceID" , "")
-    })
-
-    //now default-Out the Variables 
-    MakeDefault();
-    PositionObserver = [[{id : "whiteElephant1",positionN : 1},{id : "whiteElephant2",positionN : 8},{id : "whiteHorse1",positionN : 2},{id : "whiteHorse2",positionN : 7},{id : "whiteCamel1",positionN : 3},{id : "whiteCamel2",positionN : 6},{id : "whiteKing",positionN :4},{id : "whiteQueen",positionN : 5},{id : "whitePawn1",positionN : 9},{id : "whitePawn2",positionN : 10},{id : "whitePawn3",positionN : 11},{id : "whitePawn4",positionN : 12},{id : "whitePawn5",positionN : 13},{id : "whitePawn6",positionN : 14},{id : "whitePawn7",positionN : 15},{id : "whitePawn8",positionN : 16},{id : "blackElephant1",positionN : 49},{id : "blackElephant2",positionN : 56},{id : "blackHorse1",positionN : 50},{id : "blackHorse2",positionN : 55},{id : "blackCamel1",positionN : 51},{id : "blackCamel2",positionN : 54},{id : "blackKing",positionN :52},{id : "blackQueen",positionN : 53},{id : "blackPawn1",positionN : 57},{id : "blackPawn2",positionN : 58},{id : "blackPawn3",positionN : 59},{id : "blackPawn4",positionN : 60},{id : "blackPawn5",positionN : 61},{id : "blackPawn6",positionN : 62},{id : "blackPawn7",positionN : 63},{id : "blackPawn8",positionN : 64} ]];
-    clickedNum = [];
-    clickedNumX = [];
-    clickedNumY = [];
-    turns = ["white"];
-    winner  = undefined;
-    EnemyID = undefined;
-    IDneeder = [];
-    cleanUp();
-
-    //now again set the Peices
-
-    document.querySelectorAll(".blocks").forEach((value,index) => {
-        let A = index + 1
-        if(A<=16 && A>=1)
-        {
-           value.classList.add('Active');
-           value.classList.add('whiteP');
-           value.classList.add('ActiveA');
-       }
-
-       if(A<=64 && A>=49)
-        {
-           value.classList.add('Active');
-           value.classList.add('blackP');
-           value.classList.add('ActiveA');
-        }
-
-        if(A===1){value.classList.add('El')};
-        if(A===8){value.classList.add('El')}
-        if(A===57){value.classList.add('El')}
-        if(A===64){value.classList.add('El')}
-
-        if(A===2){value.classList.add('Hr')};
-        if(A===7){value.classList.add('Hr')}
-        if(A===58){value.classList.add('Hr')}
-        if(A===63){value.classList.add('Hr')}
-
-        if(A===3){value.classList.add('Cm')};
-        if(A===6){value.classList.add('Cm')}
-        if(A===59){value.classList.add('Cm')}
-        if(A===62){value.classList.add('Cm')}
-
-
-        if(A===4){value.classList.add('Kn')};
-        if(A===60){value.classList.add('Kn')}
-        if(A===61){value.classList.add('Qn')}
-        if(A===5){value.classList.add('Qn')}
-
-        if(A>=9 && A<=16){value.classList.add('Pw')};
-
-        if(A>=49 && A<=56){value.classList.add('Pw')};
-
-        value.classList.add("notClicked");
-
-        for(let i = 0 ; i <= 31 ; i++)
-        {
-            if(Number(value.getAttribute("positionN")) === PositionObserver[0][i].positionN){value.setAttribute("PeiceID",`${PositionObserver[0][i].id}`)}
-        }
-
-        value.firstElementChild.setAttribute("src","");
-
-        let color;
-        if(value.classList.contains("whiteP")){color = "white"};
-        if(value.classList.contains("blackP")){color = "black"};
-
-        if(value.classList.contains("El")){value.firstElementChild.setAttribute("src",`./svgs/${color}_elephant.svg`)};
-        if(value.classList.contains("Hr")){value.firstElementChild.setAttribute("src",`./svgs/${color}_horse.svg`)}
-        if(value.classList.contains("Cm")){value.firstElementChild.setAttribute("src",`./svgs/${color}_camel.svg`)}
-        if(value.classList.contains("Kn")){value.firstElementChild.setAttribute("src",`./svgs/${color}_king.svg`)}
-        if(value.classList.contains("Qn")){value.firstElementChild.setAttribute("src",`./svgs/${color}_queen.svg`)}
-        if(value.classList.contains("Pw")){value.firstElementChild.setAttribute("src",`./svgs/${color}_pawn.svg`)}
-        
-
-        Testing();
-        ActiveblockMover();
-        AllowTurn();
-
-
-        gsap.to(document.querySelector(".Result"),{
-            scale : 0 ,
-            duration : 0.3,
-            ease : Power4.easeInOut
-        })
-
-    })
-})
+]
 
 
 

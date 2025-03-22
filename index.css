@@ -6,7 +6,8 @@ body{
     background-color:  rgb(30,30,30);
     height : 100vh ;
     width : 100vw ;
-    display :flex;align-items :center; justify-content:  center;;
+    margin-inline: 60px;
+    display :flex;align-items :center; justify-content:  flex-start;;;
     overflow: hidden;
 }
 
@@ -20,9 +21,10 @@ body{
 
 .outer-container {
     display :flex;align-items: center;justify-content: center;flex-wrap: wrap;
-    height : calc(90px + (clamp(291px , 72vh , 81vh))); aspect-ratio: 1;
+    height : calc(90px + (clamp(201px , 72vh , 81vh))); aspect-ratio: 1;
     background-color : rgb(139,69,19);
     border-radius: 10px;
+    position: relative;
 }
 
 .blocks {
@@ -32,6 +34,7 @@ border : 1px solid rgb(50,50,50) ;
 display: flex;; align-items: center;justify-content: center;
 cursor : pointer;
 transition: all 0.1 ease-in-out;
+
 }
 
 
@@ -41,14 +44,22 @@ transition: all 0.1 ease-in-out;
 
 img{
     height : 70%;
-    object-fit: cover;
-}
+    object-fit: cover;}
 
-.blocks.Active.notClicked:hover {
+.blocks.Active.notClicked.ActiveA:hover {
     background-color: whitesmoke;
 }
 
-.blocks.dark_block.Active.notClicked:hover {
+.blocks.dark_block.Active.notClicked.ActiveA:hover {
+    background-color: whitesmoke !important
+}
+
+
+.blocks.Active.Clicked.ActiveA {
+    background-color: whitesmoke;
+}
+
+.blocks.dark_block.Active.Clicked.ActiveA {
     background-color: whitesmoke !important
 }
 
@@ -65,3 +76,58 @@ img{
 .enemyMove {
     background-color: red !important;
 }
+
+.blocks{
+    user-select: none;
+}
+
+.AA {
+    pointer-events: auto !important;
+}
+
+.NA {
+    cursor : not-allowed !important;
+    pointer-events: none !important;
+}
+
+
+.blocks.Active:not(.enemyMove):not(.ActiveA){
+    cursor: not-allowed !important;
+    filter:  brightness(90%) !important;
+}
+
+@media screen and (max-width : 740px){
+    body {margin-inline : 5px !important }
+}
+
+@media screen and (max-width : 400px){
+    .outer-container {
+        height : 190px !important
+    }
+}
+
+
+.xyz{
+    background-color: blue;
+}
+
+
+
+.Result {
+    transform: scale(0);
+    position: absolute;
+    height : clamp(291px , 72vh , 81vh); aspect-ratio: 1;
+    background-color: rgb(125,95,60) !important;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    filter:blur(0px)
+}
+
+.blurit
+{
+    filter : blur(2px)
+}
+
+

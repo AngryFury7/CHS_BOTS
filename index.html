@@ -6,89 +6,108 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    <div class="Header" style="position:fixed;top:0%;width:100%;height:60px;color:white;display:flex;align-items:center;justify-content:center;font-family:cursive;font-size:2em;margin-top:20px">
+        <span>Chess_by_Nikhil</span>
+    </div>
     <div class="outer-container">
     <div class="container">
-        <div class="blocks oneb" X="1" Y="8" positionN="1"><img src="./svgs/white_elephant.svg" alt=""></div>
-        <div class="blocks" X="2" Y="8" positionN="2"><img src="./svgs/white_horse.svg" alt=""></div>
-        <div class="blocks" X="3" Y="8" positionN="3"><img src="./svgs/white_camel.svg" alt=""></div>
-        <div class="blocks" X="4" Y="8" positionN="4"><img src="./svgs/white_king.svg" alt=""></div>
-        <div class="blocks" X="5" Y="8" positionN="5"><img src="./svgs/white_queen.svg" alt=""></div>
-        <div class="blocks" X="6" Y="8" positionN="6"><img src="./svgs/white_camel.svg" alt=""></div>
-        <div class="blocks" X="7" Y="8" positionN="7"><img src="./svgs/white_horse.svg" alt=""></div>
-        <div class="blocks" X="8" Y="8" positionN="8"><img src="./svgs/white_elephant.svg" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="8" positionN="1" PeiceID="whiteElephant1" ><img src="./svgs/white_elephant.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="8" positionN="2" PeiceID="whiteHorse1" ><img src="./svgs/white_horse.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="8" positionN="3" PeiceID="whiteCamel1" ><img src="./svgs/white_camel.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="8" positionN="4" PeiceID="whiteKing" ><img src="./svgs/white_king.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="8" positionN="5" PeiceID="whiteQueen" ><img src="./svgs/white_queen.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="8" positionN="6" PeiceID="whiteCamel2" ><img src="./svgs/white_camel.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="8" positionN="7" PeiceID="whiteHorse2" ><img src="./svgs/white_horse.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="8" positionN="8" PeiceID="whiteElephant2" ><img src="./svgs/white_elephant.svg" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="7" positionN="9"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="2" Y="7" positionN="10"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="3" Y="7" positionN="11"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="4" Y="7" positionN="12"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="5" Y="7" positionN="13"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="6" Y="7" positionN="14"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="7" Y="7" positionN="15"><img src="./svgs/white_pawn.svg" alt=""></div>
-        <div class="blocks" X="8" Y="7" positionN="16"><img src="./svgs/white_pawn.svg" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="7" positionN="9"  PeiceID="whitePawn1" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="7" positionN="10" PeiceID="whitePawn2" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="7" positionN="11" PeiceID="whitePawn3" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="7" positionN="12" PeiceID="whitePawn4" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="7" positionN="13" PeiceID="whitePawn5" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="7" positionN="14" PeiceID="whitePawn6" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="7" positionN="15" PeiceID="whitePawn7" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="7" positionN="16" PeiceID="whitePawn8" ><img src="./svgs/white_pawn.svg" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="6" positionN="17"><img src="" alt=""></div>
-        <div class="blocks" X="2" Y="6" positionN="18"><img src="" alt=""></div>
-        <div class="blocks" X="3" Y="6" positionN="19"><img src="" alt=""></div>
-        <div class="blocks" X="4" Y="6" positionN="20"><img src="" alt=""></div>
-        <div class="blocks" X="5" Y="6" positionN="21"><img src="" alt=""></div>
-        <div class="blocks" X="6" Y="6" positionN="22"><img src="" alt=""></div>
-        <div class="blocks" X="7" Y="6" positionN="23"><img src="" alt=""></div>
-        <div class="blocks" X="8" Y="6" positionN="24"><img src="" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="6" positionN="17" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="6" positionN="18" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="6" positionN="19" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="6" positionN="20" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="6" positionN="21" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="6" positionN="22" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="6" positionN="23" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="6" positionN="24" PeiceID="" ><img src="" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="5" positionN="25"><img src="" alt=""></div>
-        <div class="blocks" X="2" Y="5" positionN="26"><img src="" alt=""></div>
-        <div class="blocks" X="3" Y="5" positionN="27"><img src="" alt=""></div>
-        <div class="blocks" X="4" Y="5" positionN="28"><img src="" alt=""></div>
-        <div class="blocks" X="5" Y="5" positionN="29"><img src="" alt=""></div>
-        <div class="blocks" X="6" Y="5" positionN="30"><img src="" alt=""></div>
-        <div class="blocks" X="7" Y="5" positionN="31"><img src="" alt=""></div>
-        <div class="blocks" X="8" Y="5" positionN="32"><img src="" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="5" positionN="25" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="5" positionN="26" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="5" positionN="27" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="5" positionN="28" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="5" positionN="29" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="5" positionN="30" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="5" positionN="31" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="5" positionN="32" PeiceID="" ><img src="" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="4" positionN="33"><img src="" alt=""></div>
-        <div class="blocks" X="2" Y="4" positionN="34"><img src="" alt=""></div>
-        <div class="blocks" X="3" Y="4" positionN="35"><img src="" alt=""></div>
-        <div class="blocks" X="4" Y="4" positionN="36"><img src="" alt=""></div>
-        <div class="blocks" X="5" Y="4" positionN="37"><img src="" alt=""></div>
-        <div class="blocks" X="6" Y="4" positionN="38"><img src="" alt=""></div>
-        <div class="blocks" X="7" Y="4" positionN="39"><img src="" alt=""></div>
-        <div class="blocks" X="8" Y="4" positionN="40"><img src="" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="4" positionN="33" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="4" positionN="34" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="4" positionN="35" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="4" positionN="36" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="4" positionN="37" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="4" positionN="38" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="4" positionN="39" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="4" positionN="40" PeiceID="" ><img src="" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="3" positionN="41"><img src="" alt=""></div>
-        <div class="blocks" X="2" Y="3" positionN="42"><img src="" alt=""></div>
-        <div class="blocks" X="3" Y="3" positionN="43"><img src="" alt=""></div>
-        <div class="blocks" X="4" Y="3" positionN="44"><img src="" alt=""></div>
-        <div class="blocks" X="5" Y="3" positionN="45"><img src="" alt=""></div>
-        <div class="blocks" X="6" Y="3" positionN="46"><img src="" alt=""></div>
-        <div class="blocks" X="7" Y="3" positionN="47"><img src="" alt=""></div>
-        <div class="blocks" X="8" Y="3" positionN="48"><img src="" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="3" positionN="41" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="3" positionN="42" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="3" positionN="43" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="3" positionN="44" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="3" positionN="45" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="3" positionN="46" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="3" positionN="47" PeiceID="" ><img src="" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="3" positionN="48" PeiceID="" ><img src="" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="2" positionN="49"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="2" Y="2" positionN="50"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="3" Y="2" positionN="51"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="4" Y="2" positionN="52"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="5" Y="2" positionN="53"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="6" Y="2" positionN="54"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="7" Y="2" positionN="55"><img src="./svgs/black_pawn.svg" alt=""></div>
-        <div class="blocks" X="8" Y="2" positionN="56"><img src="./svgs/black_pawn.svg" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="2" positionN="49" PeiceID="blackPawn1" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="2" positionN="50" PeiceID="blackPawn2" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="2" positionN="51" PeiceID="blackPawn3" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="2" positionN="52" PeiceID="blackPawn4" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="2" positionN="53" PeiceID="blackPawn5" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="2" positionN="54" PeiceID="blackPawn6" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="2" positionN="55" PeiceID="blackPawn7" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="2" positionN="56" PeiceID="blackPawn8" ><img src="./svgs/black_pawn.svg" alt="" draggable="false"></div>
 
-        <div class="blocks" X="1" Y="1" positionN="57"><img src="./svgs/black_elephant.svg" alt=""></div>
-        <div class="blocks" X="2" Y="1" positionN="58"><img src="./svgs/black_horse.svg" alt=""></div>
-        <div class="blocks" X="3" Y="1" positionN="59"><img src="./svgs/black_camel.svg" alt=""></div>
-        <div class="blocks" X="4" Y="1" positionN="60"><img src="./svgs/black_king.svg" alt=""></div>
-        <div class="blocks" X="5" Y="1" positionN="61"><img src="./svgs/black_queen.svg" alt=""></div>
-        <div class="blocks" X="6" Y="1" positionN="62"><img src="./svgs/black_camel.svg" alt=""></div>
-        <div class="blocks" X="7" Y="1" positionN="63"><img src="./svgs/black_horse.svg" alt=""></div>
-        <div class="blocks" X="8" Y="1" positionN="64"><img src="./svgs/black_elephant.svg" alt=""></div>
+        <div draggable="false" class="blocks" X="1" Y="1" positionN="57" PeiceID="blackElephant1" ><img src="./svgs/black_elephant.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="2" Y="1" positionN="58" PeiceID="blackHorse1" ><img src="./svgs/black_horse.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="3" Y="1" positionN="59" PeiceID="blackCamel1" ><img src="./svgs/black_camel.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="4" Y="1" positionN="60" PeiceID="blackKing" ><img src="./svgs/black_king.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="5" Y="1" positionN="61" PeiceID="blackQueen" ><img src="./svgs/black_queen.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="6" Y="1" positionN="62" PeiceID="blackCamel2" ><img src="./svgs/black_camel.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="7" Y="1" positionN="63" PeiceID="blackHorse2" ><img src="./svgs/black_horse.svg" alt="" draggable="false"></div>
+        <div draggable="false" class="blocks" X="8" Y="1" positionN="64" PeiceID="blackElephant2" ><img src="./svgs/black_elephant.svg" alt="" draggable="false"></div>
+    </div>
+    <div class="Result">
+        <div style="height : 80% ; aspect-ratio:1;display:flex;align-items:center;justify-content:space-around;flex-direction:column;position:relative;filter:blur(0px)">
+            <img src="./svgs/white_king.svg" alt="" style="height:40%;min-height:40px;object-fit:cover;position:relative" class="ResultImg">
+            <span class="ResultText" style="font-size:clamp(14px,1.9em,3em);color:white;font-family:cursive">White is the Winner !</span>
+            <div style="display:flex ; align-items:center;justify-content:center;gap:20px">
+                <button class="Restart" style="height:60px;width:110px;border-radius:30px;box-shadow:0px;border:none;outline:none;font-size:19px;font-family:sans-serif;font-weight:bolder;background-color:rgba(255,255,255,0.4);cursor:pointer;filter:blur(0px)"><span style="color:black;opacity:1 !important;">Restart</span></button>
+            </div>
+        </div>
     </div>
     </div>
 
-    <div class="testing" style="height:40px ; width :40px ; background-color: blue;">
-        <img src="" alt=""> </div>
+
+    <div class="StartGame" style="border : 1px solid white;border-radius: 45px;height:90px;width:180px;background-color:none;color:white;font-family:cursive;cursor:pointer;font-weight:bold;font-size:21px;display:flex;align-items:center;justify-content:center;margin-left:150px;">
+        <span>Start Game</span>
+    </div>
 
 
-<!--     <div class="T" id="X" style="color : white;height:20px;width:20px;background-color : red"></div>
- -->    <script src="./index.js"type="module" ></script>
-        <script src="./scan.js" ></script>
+
+
+
+<!--     <div class="T" id="X" style="color : white;height:20px;width:20px;background-color : red"></div> -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+        <script src="./index.js"type="module" ></script>
+        <script src="./Bot.js" type="module"></script>
+        <!--this should be posted to the newly branch-->
 
 </body>
 </html>

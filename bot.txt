@@ -1,0 +1,20 @@
+What should be the algo for the bots : 
+
+                                                                             Lumos or Nyx (in breif)
+
+1. Select onePeice out of Availabe Peices and gather its information ;
+2. Now as per the moving Algo of that Peice it will choose any one from the total movable positons Either form Movable class or EnemyMove class;
+3. check if there are no Movable or EnemyMove classes then it will just simply Go and choose the PeiceAgain till that Peice has atLeast one of the classes (Movable || enemyMove);
+4. store the Data of classes choosen : typeofMove : {moved || killed}
+5. if moved then simply move to that position and update the chessBoard;
+6  if killed then store the type of Peice killed its ID and update the chessBoard ;
+7. check weater the Id of that peice was King ; if yes Terminate the Game;
+8. update the Arrays as per the Game goings  and also do the cleanUp and call the other bot to play;
+9. do not make push the Array after completing the Game if it already Exists;
+
+
+
+                                                                        Points to remember
+
+
+1.   see the handling of the ActiveA thing
