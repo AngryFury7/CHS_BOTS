@@ -70,6 +70,11 @@ let Search = (a,b) => {
             }
         }
 
+
+
+
+        
+
         let ArrayofmovementsPw_bottom_whiteFiltered = ArrayofmovementsPw_bottom_white.filter((value,index) => {
             if(value.x <= 8 && value.x >= 1 && value.y >= 1 && value.y <= 8){
                 return true
@@ -86,10 +91,10 @@ let Search = (a,b) => {
         })
 
 
-            if(value.classList.contains("Pw"))
+            if(element.classList.contains("Pw"))
                 {
                 
-                //cleanUp();
+                //cleanUp();           
 
             if(element.classList.contains("whiteP"))
             {

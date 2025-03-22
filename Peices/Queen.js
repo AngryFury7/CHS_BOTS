@@ -133,7 +133,7 @@ let Search = (a,b) => {
 
 
 
-        if(value.classList.contains("Qn"))
+        if(element.classList.contains("Qn"))
             {
             
 

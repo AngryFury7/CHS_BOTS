@@ -125,7 +125,7 @@ let Search = (a,b) => {
     
     
 
-            if(value.classList.contains("Kn"))
+            if(element.classList.contains("Kn"))
                 {
                 
                // cleanUp();

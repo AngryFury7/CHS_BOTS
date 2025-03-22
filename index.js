@@ -43,6 +43,8 @@ blocks.forEach((value,index) => {
 
         }
 
+
+
         if(A===1){Activeblock(value,'El')};
         if(A===8){Activeblock(value,'El')}
         if(A===57){Activeblock(value,'El')}
@@ -82,9 +84,7 @@ let X = [1,2,3,4,5,6,7,8];
 let Y = [1,2,3,4,5,6,7,8];
 
 
-document.querySelector(".StartGame").addEventListener('click',() => {
-    console.log("Game is Started")
-})
+
 
 
 
