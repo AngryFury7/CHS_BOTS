@@ -1,17 +1,309 @@
 // so now let's try to make the logic from the Start 
 
-let initPS = [{id : "whiteElephant1",positionN : 1},{id : "whiteElephant2",positionN : 8},{id : "whiteHorse1",positionN : 2},{id : "whiteHorse2",positionN : 7},{id : "whiteCamel1",positionN : 3},{id : "whiteCamel2",positionN : 6},{id : "whiteKing",positionN :4},{id : "whiteQueen",positionN : 5},{id : "whitePawn1",positionN : 9},{id : "whitePawn2",positionN : 10},{id : "whitePawn3",positionN : 11},{id : "whitePawn4",positionN : 12},{id : "whitePawn5",positionN : 13},{id : "whitePawn6",positionN : 14},{id : "whitePawn7",positionN : 15},{id : "whitePawn8",positionN : 16},{id : "blackElephant1",positionN : 49},{id : "blackElephant2",positionN : 56},{id : "blackHorse1",positionN : 50},{id : "blackHorse2",positionN : 55},{id : "blackCamel1",positionN : 51},{id : "blackCamel2",positionN : 54},{id : "blackKing",positionN :52},{id : "blackQueen",positionN : 53},{id : "blackPawn1",positionN : 57},{id : "blackPawn2",positionN : 58},{id : "blackPawn3",positionN : 59},{id : "blackPawn4",positionN : 60},{id : "blackPawn5",positionN : 61},{id : "blackPawn6",positionN : 62},{id : "blackPawn7",positionN : 63},{id : "blackPawn8",positionN : 64}]
+import { Find, PickOne } from "./needed.js";
+import {Camel} from "./Peices/Camel.js"
+import {Horse} from "./Peices/Horse.js"
+import {King} from './Peices/King.js'
+import {Queen} from './Peices/Queen.js'
+import {Elephant} from './Peices/Elephant.js'
+import {Pawn} from './Peices/Pawn.js'
+import {cleanUp} from "./movement.js"
 
+
+
+let initPS =     [
+    {id : "whiteElephant1",positionN : 1}, //index == 0
+    {id : "whiteElephant2",positionN : 8},
+    {id : "whiteHorse1",positionN : 2},
+    {id : "whiteHorse2",positionN : 7},
+    {id : "whiteCamel1",positionN : 3}, // index = 4
+    {id : "whiteCamel2",positionN : 6},
+    {id : "whiteKing",positionN :4},
+    {id : "whiteQueen",positionN : 5},
+    {id : "whitePawn1",positionN : 9},
+    {id : "whitePawn2",positionN : 10},
+    {id : "whitePawn3",positionN : 11},
+    {id : "whitePawn4",positionN : 12},
+    {id : "whitePawn5",positionN : 13},
+    {id : "whitePawn6",positionN : 14},
+    {id : "whitePawn7",positionN : 15},
+    {id : "whitePawn8",positionN : 16}, // index === 15
+    // from here the black peices start 
+    {id : "blackPawn1",positionN : 49},
+    {id : "blackPawn2",positionN : 50},
+    {id : "blackPawn3",positionN : 51},
+    {id : "blackPawn4",positionN : 52},
+    {id : "blackPawn5",positionN : 53},
+    {id : "blackPawn6",positionN : 54},
+    {id : "blackPawn7",positionN : 55},
+    {id : "blackPawn8",positionN : 56},
+    {id : "blackElephant1",positionN : 57},
+    {id : "blackElephant2",positionN : 58},
+    {id : "blackHorse1",positionN : 59},
+    {id : "blackHorse2",positionN : 60},
+    {id : "blackCamel1",positionN : 61},
+    {id : "blackCamel2",positionN : 62},
+    {id : "blackKing",positionN :63},
+    {id : "blackQueen",positionN : 64}
+]
 let initAWPs = []; let initABPs = [];
 
-initPS.forEach((value,index) => {if(index>15){initABPs.push(value)}else{initAWPs.push(value)}});
 
 let DefaultWps = initAWPs; let DefaultBps = initABPs;
 
+initPS.forEach((value,index) => {
+    if(index > 15)
+    {
+        let Peice = Find(value.positionN);
+        let type;
+        let typeName;
+        let classcolor = "blackP"
+        if(Peice.classList.contains("El")){type = "El" , typeName = "elephant"};
+        if(Peice.classList.contains("Hr")){type = "Hr" , typeName = "horse"}
+        if(Peice.classList.contains("Cm")){type = "Cm" , typeName = "camel"}
+        if(Peice.classList.contains("Kn")){type = "Kn" , typeName = "king"}
+        if(Peice.classList.contains("Qn")){type = "Qn" , typeName = "queen"}
+        if(Peice.classList.contains("Pw")){type = "Pw" , typeName = "pawn"}
+        initABPs.push({id : value.id , positionN : value.positionN , typ : type , typN : typeName , color : classcolor})
+    }
+
+    if(index <= 15)
+    {
+        let Peice = Find(value.positionN);
+        let type;
+        let typeName;
+        let classcolor = "whiteP"
+        if(Peice.classList.contains("El")){type = "El" , typeName = "elephant" };
+        if(Peice.classList.contains("Hr")){type = "Hr" , typeName = "horse"}
+        if(Peice.classList.contains("Cm")){type = "Cm" , typeName = "camel"}
+        if(Peice.classList.contains("Kn")){type = "Kn" , typeName = "king"}
+        if(Peice.classList.contains("Qn")){type = "Qn" , typeName = "queen"}
+        if(Peice.classList.contains("Pw")){type = "Pw" , typeName = "pawn"}
+        initAWPs.push({id : value.id , positionN : value.positionN , typ : type , typN : typeName , color : classcolor})
+    }
+});
+
+
+// now since we have the default values of these Peices we can move forward with creating the Bots;
+
+let botTurn = ["Lumos"];
+
+let Game = [initPS];
+
+let lengthofArray = undefined;
+let DecidingArray = [];
+let SelectedPeice_White = undefined;
+let SelectedPeice_Black = undefined;
+
+let movableBlocks = [];
+let moveDecider = [];
+let Classes = ["El" , "Hr" , "Cm" , "Kn" , "Qn " , "Pw"];
+let typeofEnemy ; 
+let initialPeiceID ;
+let NewPosition ;
 
 
 
 
+let MakeLumosDf = () => { 
+ lengthofArray = undefined;
+ DecidingArray = [];
+ SelectedPeice_White = undefined;
+ movableBlocks = [];
+ moveDecider = [];
+ typeofEnemy = undefined;
+ initialPeiceID = undefined
+ NewPosition = undefined
+ SelectedPeice_Black = undefined
+}
+
+let Counts = []
+
+
+let Lumos = () => {
+    if(botTurn[botTurn.length - 1] === "Lumos")
+    {
+        MakeLumosDf();
+
+        lengthofArray = initAWPs.length;
+        DecidingArray = [];
+        for(let i = 0 ; i <= lengthofArray - 1 ; i++){DecidingArray.push(i)};
+        let PeiceViaSelection = initAWPs[PickOne(DecidingArray)];
+        SelectedPeice_White = Find(PeiceViaSelection.positionN);
+        if(!Find(PeiceViaSelection.positionN)){console.log("this was not found",PeiceViaSelection.positionN,initAWPs)  ; return}
+        if(SelectedPeice_White.classList.contains("El")){Elephant(SelectedPeice_White);}
+        if(SelectedPeice_White.classList.contains("Hr")){Horse(SelectedPeice_White);}
+        if(SelectedPeice_White.classList.contains("Kn")){King(SelectedPeice_White);}
+        if(SelectedPeice_White.classList.contains("Qn")){Queen(SelectedPeice_White);}
+        if(SelectedPeice_White.classList.contains("Pw")){Pawn(SelectedPeice_White);}
+        if(SelectedPeice_White.classList.contains("Cm")){Camel(SelectedPeice_White);}
+        movableBlocks = [];
+        document.querySelectorAll(".blocks").forEach((value,index) => {if(value.classList.contains("movable")){movableBlocks.push({Value : value , type : "movable"})}if(value.classList.contains("enemyMove")){movableBlocks.push({Value : value , type : "enemyMove"})}});
+        if(movableBlocks.length === 0){MakeLumosDf() ; Lumos() ; return}
+        moveDecider = [];
+        for(let i = 0 ; i <= movableBlocks.length - 1 ; i++){moveDecider.push(i)};
+        let moveDecIndent = PickOne(moveDecider);
+        let movableSB = movableBlocks[moveDecIndent];
+        //console.log(movableSB.type);
+
+        NewPosition = Number(movableSB.Value.getAttribute("positionN"))
+
+
+        if(movableSB.type === "movable"){
+            SelectedPeice_White.firstElementChild.setAttribute("src","");
+            SelectedPeice_White.classList.remove("whiteP")
+            SelectedPeice_White.classList.remove(PeiceViaSelection.typ);
+            SelectedPeice_White.setAttribute("PeiceID" , "");
+            SelectedPeice_White.classList.remove("Active");
+            
+            PeiceViaSelection.positionN = NewPosition;
+
+            movableSB.Value.firstElementChild.setAttribute("src",`./svgs/white_${PeiceViaSelection.typN}.svg`);
+            movableSB.Value.classList.add("Active");
+            movableSB.Value.classList.add("whiteP");
+            movableSB.Value.setAttribute("PeiceID" , PeiceViaSelection.id);
+            movableSB.Value.classList.add(PeiceViaSelection.typ);
+            // remainder : store the Game DATA 
+            cleanUp();
+        }
+
+        if(movableSB.type === "enemyMove"){
+            for(let i = 0 ; i <= 5 ; i++){if(movableSB.Value.classList.contains(Classes[i])){typeofEnemy = Classes[i]}}
+            SelectedPeice_White.firstElementChild.setAttribute("src","");
+            SelectedPeice_White.classList.remove("whiteP")
+            SelectedPeice_White.classList.remove(PeiceViaSelection.typ);
+            SelectedPeice_White.setAttribute("PeiceID" , "");
+            SelectedPeice_White.classList.remove("Active");
+            
+            initialPeiceID = movableSB.Value.getAttribute("PeiceID");
+            PeiceViaSelection.positionN = Number(NewPosition);
+            for(let i = 0 ; i <= initABPs.length - 1 ; i++)
+            {
+                if(initABPs[i].id === initialPeiceID)
+                initABPs.splice(i,1)
+            }
+            movableSB.Value.firstElementChild.setAttribute("src",`./svgs/white_${PeiceViaSelection.typN}.svg`);
+            movableSB.Value.classList.add("whiteP");
+            movableSB.Value.classList.remove("blackP");
+            movableSB.Value.setAttribute("PeiceID" , PeiceViaSelection.id);
+
+            if(typeofEnemy !== PeiceViaSelection.typ){
+                movableSB.Value.classList.remove(typeofEnemy);
+                movableSB.Value.classList.add(PeiceViaSelection.typ)
+            }
+            cleanUp();
+
+            if(typeofEnemy === "Kn")
+            {console.log("white is the winner of the Game") ; return}
+        }
+
+        Counts.push(1);
+        botTurn.push("Nyx");
+        if(Counts.length > 1000){console.log("limit exceeded");return}
+        setTimeout(Nyx,100)
+        return 
+
+        }
+}
+
+
+
+
+let Nyx = () => {
+
+    if(botTurn[botTurn.length - 1] === "Nyx")
+    {       MakeLumosDf();
+
+        lengthofArray = initABPs.length;
+        DecidingArray = [];
+        for(let i = 0 ; i <= lengthofArray - 1 ; i++){DecidingArray.push(i)};
+        let PeiceViaSelection = initABPs[PickOne(DecidingArray)];
+        SelectedPeice_Black = Find(PeiceViaSelection.positionN);
+        if(SelectedPeice_Black.classList.contains("El")){Elephant(SelectedPeice_Black);}
+        if(SelectedPeice_Black.classList.contains("Hr")){Horse(SelectedPeice_Black);}
+        if(SelectedPeice_Black.classList.contains("Kn")){King(SelectedPeice_Black);}
+        if(SelectedPeice_Black.classList.contains("Qn")){Queen(SelectedPeice_Black);}
+        if(SelectedPeice_Black.classList.contains("Pw")){Pawn(SelectedPeice_Black);}
+        if(SelectedPeice_Black.classList.contains("Cm")){Camel(SelectedPeice_Black);}
+        movableBlocks = [];
+        document.querySelectorAll(".blocks").forEach((value,index) => {if(value.classList.contains("movable")){movableBlocks.push({Value : value , type : "movable"})}if(value.classList.contains("enemyMove")){movableBlocks.push({Value : value , type : "enemyMove"})}});
+        if(movableBlocks.length === 0){MakeLumosDf() ; Nyx() ; return}
+        moveDecider = [];
+        for(let i = 0 ; i <= movableBlocks.length - 1 ; i++){moveDecider.push(i)};
+        let moveDecIndent = PickOne(moveDecider);
+        let movableSB = movableBlocks[moveDecIndent];
+        //console.log(movableSB.type);
+
+        NewPosition = Number(movableSB.Value.getAttribute("positionN"))
+
+
+        if(movableSB.type === "movable"){
+            SelectedPeice_Black.firstElementChild.setAttribute("src","");
+            SelectedPeice_Black.classList.remove("blackP")
+            SelectedPeice_Black.classList.remove(PeiceViaSelection.typ);
+            SelectedPeice_Black.setAttribute("PeiceID" , "");
+            SelectedPeice_Black.classList.remove("Active");
+            
+            PeiceViaSelection.positionN = NewPosition;
+
+            movableSB.Value.firstElementChild.setAttribute("src",`./svgs/black_${PeiceViaSelection.typN}.svg`);
+            movableSB.Value.classList.add("Active");
+            movableSB.Value.classList.add("blackP");
+            movableSB.Value.setAttribute("PeiceID" , PeiceViaSelection.id);
+            movableSB.Value.classList.add(PeiceViaSelection.typ);
+            // remainder : store the Game DATA 
+            cleanUp();
+        }
+
+        if(movableSB.type === "enemyMove"){
+            for(let i = 0 ; i <= 5 ; i++){if(movableSB.Value.classList.contains(Classes[i])){typeofEnemy = Classes[i]}}
+            SelectedPeice_Black.firstElementChild.setAttribute("src","");
+            SelectedPeice_Black.classList.remove("blackP")
+            SelectedPeice_Black.classList.remove(PeiceViaSelection.typ);
+            SelectedPeice_Black.setAttribute("PeiceID" , "");
+            SelectedPeice_Black.classList.remove("Active");
+            
+            initialPeiceID = movableSB.Value.getAttribute("PeiceID");
+            PeiceViaSelection.positionN = Number(NewPosition);
+            for(let i = 0 ; i <= initAWPs.length - 1 ; i++)
+            {
+                if(initAWPs[i].id === initialPeiceID)
+                initAWPs.splice(i,1)
+            }
+            movableSB.Value.firstElementChild.setAttribute("src",`./svgs/black_${PeiceViaSelection.typN}.svg`);
+            movableSB.Value.classList.add("blackP");
+            movableSB.Value.classList.remove("whiteP");
+            movableSB.Value.setAttribute("PeiceID" , PeiceViaSelection.id);
+
+            if(typeofEnemy !== PeiceViaSelection.typ){
+                movableSB.Value.classList.remove(typeofEnemy);
+                movableSB.Value.classList.add(PeiceViaSelection.typ)
+            }
+            // remainder : store the Game DATA 
+            cleanUp();
+            if(typeofEnemy === "Kn")
+                {console.log("black is the winner of the Game") ; return}
+        }
+
+        botTurn.push("Lumos");
+        Counts.push(1)
+        if(Counts.length  > 1000){console.log("limit exceeded");return}
+        setTimeout(Lumos,100)
+        return 
+
+        }
+}
+
+Lumos();
+
+
+
+/* lengthofArray = initAWPs.length;
+DecidingArray = [];
+for(let i = 0 ; i <= lengthofArray - 1 ; i++){DecidingArray.push(i)};
+let PeiceViaSelection = initAWPs[1];
+SelectedPeice_White = Find(PeiceViaSelection.positionN);
+console.log(PeiceViaSelection , SelectedPeice_White); */
 
 
 

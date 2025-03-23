@@ -42,10 +42,6 @@ blocks.forEach((value,index) => {
             Activeblock(value,'ActiveA');
         }
 
-
-
-
-
         if(A===1){Activeblock(value,'El')};
         if(A===8){Activeblock(value,'El')}
         if(A===57){Activeblock(value,'El')}
@@ -70,9 +66,6 @@ blocks.forEach((value,index) => {
         if(A>=9 && A<=16){Activeblock(value,'Pw')};
 
         if(A>=49 && A<=56){Activeblock(value,'Pw')};
-
-
-
 
         value.classList.add('notClicked')
 

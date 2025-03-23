@@ -159,6 +159,9 @@ let Search = (a,b) => {
                 breakerKn(ArrayofmovementsKn_TR,"blackP")
                 breakerKn(ArrayofmovementsKn_bottom,"blackP")
                 breakerKn(ArrayofmovementsKn_top,"blackP")
+                breakerKn(ArrayofmovementsKn_left,"blackP")
+                breakerKn(ArrayofmovementsKn_right,"blackP")
+
     
             }
     
@@ -170,6 +173,8 @@ let Search = (a,b) => {
                     breakerKn(ArrayofmovementsKn_TR,"whiteP")
                     breakerKn(ArrayofmovementsKn_bottom,"whiteP")
                     breakerKn(ArrayofmovementsKn_top,"whiteP")
+                    breakerKn(ArrayofmovementsKn_left,"whiteP")
+                    breakerKn(ArrayofmovementsKn_right,"whiteP")
         
                 }
             }else{console.log("king function returned") ; return}
