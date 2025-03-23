@@ -40,8 +40,9 @@ blocks.forEach((value,index) => {
             Activeblock(value,'Active');
             Activeblock(value,'blackP');
             Activeblock(value,'ActiveA');
-
         }
+
+
 
 
 
