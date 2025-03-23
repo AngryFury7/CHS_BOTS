@@ -294,8 +294,10 @@ let Nyx = () => {
         }
 }
 
-Lumos();
 
+const Lumosinit = () => {Lumos();document.querySelector(".StartGame").removeEventListener('click',Lumosinit);}
+
+document.querySelector(".StartGame").addEventListener('click',Lumosinit)
 
 
 /* lengthofArray = initAWPs.length;
