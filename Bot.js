@@ -117,7 +117,8 @@ let MakeLumosDf = () => {
  SelectedPeice_Black = undefined
 }
 
-let Counts = []
+let Counts = [];
+let timevalue = 140;
 
 
 let Lumos = () => {
@@ -164,6 +165,8 @@ let Lumos = () => {
             movableSB.Value.setAttribute("PeiceID" , PeiceViaSelection.id);
             movableSB.Value.classList.add(PeiceViaSelection.typ);
             // remainder : store the Game DATA 
+
+
             cleanUp();
         }
 
@@ -175,6 +178,7 @@ let Lumos = () => {
             SelectedPeice_White.setAttribute("PeiceID" , "");
             SelectedPeice_White.classList.remove("Active");
             
+
             initialPeiceID = movableSB.Value.getAttribute("PeiceID");
             PeiceViaSelection.positionN = Number(NewPosition);
             for(let i = 0 ; i <= initABPs.length - 1 ; i++)
@@ -193,15 +197,20 @@ let Lumos = () => {
             }
             cleanUp();
 
+
+
             if(typeofEnemy === "Kn")
             {console.log("white is the winner of the Game") ;
-                ResultDisplay("white"); return}
+                ResultDisplay("white");
+                console.log(Game)
+                //botTurn.push("Nyx");
+                return}
         }
 
         Counts.push(1);
         botTurn.push("Nyx");
         if(Counts.length > 1000){console.log("limit exceeded");return}
-        setTimeout(Nyx,100)
+        setTimeout(Nyx,timevalue)
         return 
 
         }
@@ -282,16 +291,19 @@ let Nyx = () => {
             }
             // remainder : store the Game DATA 
             cleanUp();
+
             if(typeofEnemy === "Kn")
                 {console.log("black is the winner of the Game") ; 
-                    ResultDisplay("black")
+                    ResultDisplay("black");
+                    botTurn.push("Lumos");
+                    console.log(Game)
                     return}
         }
 
         botTurn.push("Lumos");
         Counts.push(1)
         if(Counts.length  > 1000){console.log("limit exceeded");return}
-        setTimeout(Lumos,100)
+        setTimeout(Lumos,timevalue)
         return 
 
         }
@@ -328,6 +340,9 @@ const Lumosinit = () => {
             duration : 0.3,
             ease : Power4.easeInOut
         })
+
+
+        Counts.splice(0,Counts.length)
 
 
         MakeLumosDf();
@@ -415,7 +430,7 @@ const Lumosinit = () => {
             })
 
 
-     setTimeout(Lumos,900)
+     setTimeout(Lumos,1000)
 
         Scale.push(0)
     }else{setTimeout(Lumos,900)}
