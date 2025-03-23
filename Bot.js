@@ -7,7 +7,7 @@ import {King} from './Peices/King.js'
 import {Queen} from './Peices/Queen.js'
 import {Elephant} from './Peices/Elephant.js'
 import {Pawn} from './Peices/Pawn.js'
-import {cleanUp} from "./movement.js"
+import {cleanUp, MakeDefault} from "./movement.js"
 
 
 
@@ -194,7 +194,8 @@ let Lumos = () => {
             cleanUp();
 
             if(typeofEnemy === "Kn")
-            {console.log("white is the winner of the Game") ; return}
+            {console.log("white is the winner of the Game") ;
+                ResultDisplay("white"); return}
         }
 
         Counts.push(1);
@@ -282,7 +283,9 @@ let Nyx = () => {
             // remainder : store the Game DATA 
             cleanUp();
             if(typeofEnemy === "Kn")
-                {console.log("black is the winner of the Game") ; return}
+                {console.log("black is the winner of the Game") ; 
+                    ResultDisplay("black")
+                    return}
         }
 
         botTurn.push("Lumos");
@@ -294,8 +297,133 @@ let Nyx = () => {
         }
 }
 
+let Scale = [0]
+const ResultDisplay = (colorInput) => {
+    {
+        document.querySelector(".ResultImg").setAttribute("src",`./svgs/${colorInput}_king.svg`);
+        document.querySelector(".ResultText").innerHTML = `${colorInput} is the Winner !`;
+        gsap.set(document.querySelector(".ResultText"),{
+            color : "rgb(255,255,255)"
+        })
+    }
+    gsap.to(document.querySelector(".Result"),{
+        scale : 1 , 
+        duration : 0.3 ,
+        ease : Power4.easeInOut
+    })
 
-const Lumosinit = () => {Lumos();document.querySelector(".StartGame").removeEventListener('click',Lumosinit);}
+    Scale.push(1)
+
+    document.querySelector(".SpanofGame").innerHTML = "Restart"
+
+    document.querySelector('.StartGame').addEventListener('click',Lumosinit)
+}
+
+const Lumosinit = () => {
+    document.querySelector(".StartGame").removeEventListener('click',Lumosinit)
+    if(Scale[Scale.length - 1] === 1)
+    {
+        gsap.to(document.querySelector(".Result"),{
+            scale : 0 ,
+            duration : 0.3,
+            ease : Power4.easeInOut
+        })
+
+
+        MakeLumosDf();
+        initAWPs = DefaultWps;
+        initABPs = DefaultBps;
+
+        document.querySelectorAll(".blocks").forEach((value,index) => {
+            if(value.classList.contains("Active")){value.classList.remove("Active")}
+            if(value.classList.contains("ActiveA")){value.classList.remove("ActiveA")}
+            if(value.classList.contains("whiteP")){value.classList.remove("whiteP")}
+            if(value.classList.contains("blackP")){value.classList.remove("blackP")}
+            if(value.classList.contains("El")){value.classList.remove("El")}
+            if(value.classList.contains("Hr")){value.classList.remove("Hr")}
+            if(value.classList.contains("Kn")){value.classList.remove("Kn")}
+            if(value.classList.contains("Cm")){value.classList.remove("Cm")}
+            if(value.classList.contains("Qn")){value.classList.remove("Qn")}
+            if(value.classList.contains("Pw")){value.classList.remove("Pw")};
+            if(value.classList.contains("Clicked")){value.classList.remove("Clicked")};
+            if(value.classList.contains("notClicked")){value.classList.remove("notClicked")}
+            value.setAttribute("PeiceID" , "")
+        })
+
+
+         document.querySelectorAll(".blocks").forEach((value,index) => {
+                let A = index + 1
+                if(A<=16 && A>=1)
+                {
+                   value.classList.add('Active');
+                   value.classList.add('whiteP');
+                   value.classList.add('ActiveA');
+               }
+        
+               if(A<=64 && A>=49)
+                {
+                   value.classList.add('Active');
+                   value.classList.add('blackP');
+                   value.classList.add('ActiveA');
+                }
+        
+                if(A===1){value.classList.add('El')};
+                if(A===8){value.classList.add('El')}
+                if(A===57){value.classList.add('El')}
+                if(A===64){value.classList.add('El')}
+        
+                if(A===2){value.classList.add('Hr')};
+                if(A===7){value.classList.add('Hr')}
+                if(A===58){value.classList.add('Hr')}
+                if(A===63){value.classList.add('Hr')}
+        
+                if(A===3){value.classList.add('Cm')};
+                if(A===6){value.classList.add('Cm')}
+                if(A===59){value.classList.add('Cm')}
+                if(A===62){value.classList.add('Cm')}
+        
+        
+                if(A===4){value.classList.add('Kn')};
+                if(A===60){value.classList.add('Kn')}
+                if(A===61){value.classList.add('Qn')}
+                if(A===5){value.classList.add('Qn')}
+        
+                if(A>=9 && A<=16){value.classList.add('Pw')};
+        
+                if(A>=49 && A<=56){value.classList.add('Pw')};
+        
+                value.classList.add("notClicked");
+        
+                for(let i = 0 ; i <= 31 ; i++)
+                {
+                    if(Number(value.getAttribute("positionN")) === initPS[i].positionN){value.setAttribute("PeiceID",`${initPS[i].id}`)}
+                }
+        
+                value.firstElementChild.setAttribute("src","");
+        
+                let color;
+                if(value.classList.contains("whiteP")){color = "white"};
+                if(value.classList.contains("blackP")){color = "black"};
+        
+                if(value.classList.contains("El")){value.firstElementChild.setAttribute("src",`./svgs/${color}_elephant.svg`)};
+                if(value.classList.contains("Hr")){value.firstElementChild.setAttribute("src",`./svgs/${color}_horse.svg`)}
+                if(value.classList.contains("Cm")){value.firstElementChild.setAttribute("src",`./svgs/${color}_camel.svg`)}
+                if(value.classList.contains("Kn")){value.firstElementChild.setAttribute("src",`./svgs/${color}_king.svg`)}
+                if(value.classList.contains("Qn")){value.firstElementChild.setAttribute("src",`./svgs/${color}_queen.svg`)}
+                if(value.classList.contains("Pw")){value.firstElementChild.setAttribute("src",`./svgs/${color}_pawn.svg`)}
+                
+            })
+
+
+     setTimeout(Lumos,900)
+
+        Scale.push(0)
+    }else{setTimeout(Lumos,900)}
+
+
+    document.querySelector(".SpanofGame").innerHTML = "..."
+
+    ;}
 
 document.querySelector(".StartGame").addEventListener('click',Lumosinit)
 
